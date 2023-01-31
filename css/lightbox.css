@@ -1,0 +1,79 @@
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .90);
+    z-index: 10;
+    overflow: auto;
+    animation: lightboxIn 0.5s;
+}
+
+.lightbox__next,
+.lightbox__preview {
+    border: none;
+    background: url('./../assets/images/arrow.svg') center center no-repeat;
+    width: 61px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: -14px;
+    z-index: 11;
+}
+
+.lightbox__preview {
+    left: 0;
+    transform: rotate(180deg);
+}
+
+
+
+.lightbox__close {
+    position: fixed;
+    top: 0px;
+    right: 10px;
+    width: 55px;
+    height: 53px;
+    border: none;
+    z-index: 12;
+    background: url('data:image/svg+xml;utf8,<svg width="50" height="48" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.545 7.705L17.135 6.295L12.84 10.59L8.545 6.295L7.135 7.705L11.43 12L7.135 16.295L8.545 17.705L12.84 13.41L17.135 17.705L18.545 16.295L14.25 12L18.545 7.705Z" fill="white" /></svg>') center center / 55px 53px no-repeat;
+}
+
+.lightbox button {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    text-indent: 3000px;
+}
+
+.lightbox button:hover {
+    opacity: 1;
+}
+
+.lightbox__container {
+    margin: 50px 50px 0 50px;
+}
+
+.lightbox__container img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    height: auto;
+    min-height: 100vh;
+    animation: lightboxIn 0.5s;
+}
+
+@keyframes lightboxIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

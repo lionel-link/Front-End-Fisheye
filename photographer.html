@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="./css/lightbox.css">
     <title>Fisheye - photographe </title>
   </head>
 
@@ -14,10 +16,14 @@
       <img src="assets/images/logo.png" class="logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div id="photograph-header">
+        <div class="bloc-contact"><button class="contact_button" onclick="displayModal()">Contactez-moi</button></div>
+        <div id="photographer-photo"></div>
       </div>
+      <div id="folio"></div>
+      <div id="price"></div>
     </main>
+
     <div id="contact_modal">
       <div class="modal">
         <header>
@@ -33,8 +39,18 @@
         </form>
       </div>
     </div>
-    <script src="./scripts/pages/photographer.js"></script>
+
+    <!-- <div class="lightbox">
+      <button class="lightbox__close">Fermer</button>
+      <button class="lightbox__next">Suivant</button>
+      <button class="lightbox__preview">Précédent</button>
+      <div class="lightbox__container">
+        <img src="./assets/folio/Ellie-Rose/Architecture_Connected_Curves.jpg" alt="">
+      </div>
+    </div> -->
+    <script src="./scripts/pages/photographer.js" type="module"></script>
     <script src="./scripts/utils/contactForm.js"></script>
+    <script src="./scripts/utils/lightbox.js" type="module" defer></script>
   </body>
 
 </html>
