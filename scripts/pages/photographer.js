@@ -34,6 +34,17 @@ async function getPhotographer() {
         })
 
     lightbox.init()
+    const closer = document.getElementById('lightbox')
+    if (closer) {
+
+        const lightboxClose = document.getElementById('lightbox__close')
+        console.log(closer)
+        closer.addEventListener('click', closeModal)
+    }
+
+    function closeModal(e) {
+        lightboxClose.remove()
+    }
 }
 
 function MediaFactory(Media, name) {
