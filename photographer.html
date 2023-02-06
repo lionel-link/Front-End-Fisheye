@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link rel="stylesheet" href="./css/lightbox.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <title>Fisheye - photographe </title>
   </head>
 
@@ -30,24 +31,28 @@
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-        <form>
-          <div>
+        <form id="form">
+          <div class="formData">
             <label>Prénom</label>
-            <input />
+            <input class="text-control" type="text" minlength="2" id="first" name="first" required />
+          </div>
+          <div class="formData">
+            <label for="last">Nom</label><br>
+            <input class="text-control" type="text" minlength="2" id="last" name="last" required />
+          </div>
+          <div class="formData">
+            <label for="email">E-mail</label><br>
+            <input class="text-control" type="email" id="email" name="email" required />
+          </div>
+          <div class="formData">
+            <label for="message">Votre message</label><br>
+            <textarea id="message" name="message" rows="10" cols="94"></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
     </div>
 
-    <!-- <div class="lightbox">
-      <button class="lightbox__close">Fermer</button>
-      <button class="lightbox__next">Suivant</button>
-      <button class="lightbox__preview">Précédent</button>
-      <div class="lightbox__container">
-        <img src="./assets/folio/Ellie-Rose/Architecture_Connected_Curves.jpg" alt="">
-      </div>
-    </div> -->
     <script src="./scripts/pages/photographer.js" type="module"></script>
     <script src="./scripts/utils/contactForm.js"></script>
     <script src="./scripts/utils/lightbox.js" type="module" defer></script>
