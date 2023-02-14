@@ -1,6 +1,7 @@
 export class lightbox {
     static init() {
         const links = Array.from(document.querySelectorAll('a[href$=".png"], a[href$=".jpg"]'))
+        console.log(links)
         const gallery = links.map(link => link.getAttribute('href'))
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
@@ -70,6 +71,7 @@ export class lightbox {
     next(e) {
         e.preventDefault()
         let index = this.gallery.findIndex(image => image === this.url)
+        console.log(this.gallery)
         if (index == this.gallery.length - 1) {
             index = -1
         }
@@ -79,6 +81,7 @@ export class lightbox {
     prev(e) {
         e.preventDefault()
         let index = this.gallery.findIndex(image => image === this.url)
+        console.log(this.gallery)
         if (index == 0) {
             index = this.gallery.length
         }
