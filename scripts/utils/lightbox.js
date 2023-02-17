@@ -1,19 +1,40 @@
 export class lightbox {
     static init() {
-        const links = Array.from(document.querySelectorAll('a[href$=".png"], a[href$=".jpg"]'))
-        console.log(links)
-        const gallery = links.map(link => link.getAttribute('href'))
+        let link = ""
+        let type = ""
+
+        //const links = Array.from(document.querySelectorAll('a[href$=".png"], a[href$=".jpg"]'))
+        const links = Array.from(document.querySelectorAll('.img_folio > a, .img_folio > video'))
+        const gallery = links.map((e) => {
+            if (e.getAttribute('src')) {
+                let lien = e.getAttribute('src')
+                let typeContenu = "video"
+                return { lien, typeContenu }
+            } else {
+                let lien = e.getAttribute('href')
+                let typeContenu = "img"
+                return { lien, typeContenu }
+            }
+        })
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
-            new lightbox(e.currentTarget.getAttribute('href'), gallery)
+            if (e.currentTarget.getAttribute('src')) {
+                link = e.currentTarget.getAttribute('src')
+                type = "video"
+            } else {
+                link = e.currentTarget.getAttribute('href')
+                type = "img"
+            }
+            new lightbox(link, type, gallery)
         }))
     }
 
-    constructor(url, gallery) {
+    constructor(url, type, gallery) {
+        this.type = type
         this.url = url
         const element = this.buildDom()
         document.body.appendChild(element)
-        this.loadImage(url)
+        this.loadImage(url, type)
         this.gallery = gallery
         this.onKeyUp(this)
         this.closeModal()
@@ -32,13 +53,33 @@ export class lightbox {
         return dom
     }
 
-    loadImage(url) {
-        const image = new Image()
+    loadImage(url, type) {
         const container = document.querySelector('.lightbox__container')
-        if (container.hasChildNodes()) { container.removeChild(container.children[0]) }
-        image.src = url
-        container.appendChild(image)
-        this.url = url
+        switch (type) {
+            case 'img':
+                const image = new Image()
+                if (container.hasChildNodes()) { container.removeChild(container.children[0]) }
+                image.src = url
+                container.appendChild(image)
+                this.url = url
+                this.type = "img"
+                break;
+            case 'video':
+                const video = document.createElement("video");
+                if (container.hasChildNodes()) { container.removeChild(container.children[0]) }
+                video.src = url
+                video.autoplay = true;
+                video.controls = true;
+                container.appendChild(video)
+                this.url = url
+                this.type = "video"
+                break;
+            default:
+                console.log("bug")
+        }
+
+
+
     }
 
     closeModal() {
@@ -70,21 +111,19 @@ export class lightbox {
 
     next(e) {
         e.preventDefault()
-        let index = this.gallery.findIndex(image => image === this.url)
-        console.log(this.gallery)
+        let index = this.gallery.findIndex(image => image.lien === this.url)
         if (index == this.gallery.length - 1) {
             index = -1
         }
-        this.loadImage(this.gallery[index + 1])
+        this.loadImage(this.gallery[index + 1].lien, this.gallery[index + 1].typeContenu)
     }
 
     prev(e) {
         e.preventDefault()
-        let index = this.gallery.findIndex(image => image === this.url)
-        console.log(this.gallery)
+        let index = this.gallery.findIndex(image => image.lien === this.url)
         if (index == 0) {
             index = this.gallery.length
         }
-        this.loadImage(this.gallery[index - 1])
+        this.loadImage(this.gallery[index - 1].lien, this.gallery[index - 1].typeContenu)
     }
 }

@@ -21,15 +21,19 @@
         <div class="bloc-contact"><button class="contact_button" onclick="displayModal()">Contactez-moi</button></div>
         <div id="photographer-photo"></div>
       </div>
-      <div class="custom-select">
-        <select name="select" id="select">
-          <option value="popularite">Popularité</option>
-          <option value="date">Date</option>
-          <option value="titre">Titre</option>
-        </select>
+      <div class="container">
+        <div class="custom-select">
+          <span class="select-title">Trier par</span> <select name="select" id="select">
+            <option value="popularite">Popularité</option>
+            <option class="divider" disabled></option>
+            <option value="date">Date</option>
+            <option class="divider" disabled></option>
+            <option value="titre">Titre</option>
+          </select>
+        </div>
+        <div id="folioContainer"></div>
+        <div id="price"></div>
       </div>
-      <div id="folioContainer"></div>
-      <div id="price"></div>
     </main>
 
     <div id="contact_modal">
@@ -53,7 +57,7 @@
           </div>
           <div class="formData">
             <label for="message">Votre message</label><br>
-            <textarea id="message" name="message" rows="10" cols="94"></textarea>
+            <textarea class="text-control" type="text" id="message" name="message" required></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>

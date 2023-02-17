@@ -1,7 +1,6 @@
 @import url("photographer.css");
 
 body {
-    width: 1300px;
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }
@@ -70,9 +69,15 @@ h1 {
 .photographer_section article a {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     text-decoration: none;
     flex-wrap: wrap;
+}
+
+.photographer_section article a img {
+    border-radius: 100px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .photographer_section article .price {
@@ -86,6 +91,10 @@ h1 {
 
 /************************************************************* PHOTOGRAPHER *************************************************************************/
 
+.container {
+    margin: 0 100px;
+}
+
 #folio {
     display: flex;
     flex-wrap: wrap;
@@ -98,17 +107,36 @@ h1 {
 }
 
 .img_folio {
-    width: 300px;
+    width: 350px;
+    margin-bottom: 30px;
 }
 
 .img_folio img {
-    width: 300px;
-    height: 350px;
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.img_folio span {
+    color: #901C1C;
+}
+
+.img_folio div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img_folio i {
+    padding-left: 5px;
 }
 
 #photographer-photo img {
     width: 200px;
-    border-radius: 280px;
+    height: 200px;
+    border-radius: 100px;
+    object-fit: cover;
+    object-position: center;
 }
 
 #photograph-header {
@@ -116,6 +144,10 @@ h1 {
     justify-content: space-between;
     margin-bottom: 80px;
     align-items: center;
+    margin: 0 100px;
+    background: #FAFAFA;
+    border-radius: 5px;
+    padding: 50px;
 }
 
 .photographer-detail {
@@ -131,7 +163,6 @@ h1 {
     width: 200px;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
     border-radius: 2px;
 }
 
@@ -139,8 +170,60 @@ h1 {
     background-color: #901C1C;
     padding: 10px;
     color: white;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    border: 1px solid #901C1C
 }
 
-#select option {
-    border-top: 1px solid white;
+#select::selection {
+    border: none;
+}
+
+#select:hover {
+    background-color: #901C1C;
+}
+
+#select:after {
+    background-color: #901C1C;
+}
+
+textarea#message {
+    width: 100%;
+    height: 130px;
+    border: none;
+    border-radius: 5px;
+}
+
+.photographer-detail h2 {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    color: #D3573C;
+    margin: 0 0 0 0;
+}
+
+.photographer-country {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    padding-bottom: 12px;
+    color: #901C1C;
+}
+
+.select-title {
+    font-weight: 700;
+    font-size: 18px;
+    padding-right: 15px;
+}
+
+.custom-select {
+    padding: 30px 0;
+}
+
+.divider {
+    font-size: 0.2px;
+    background: rgba(220, 212, 217, 0.5);
 }

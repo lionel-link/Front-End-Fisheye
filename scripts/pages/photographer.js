@@ -10,8 +10,8 @@ async function getPhotographer() {
     let url = new URL(window.location.toLocaleString()).searchParams
     const id = url.get('id');
     let likes = 0
-    let photographer = {}
     let album = []
+    let photographer = {}
     let divFolio = document.createElement('div')
     divFolio.setAttribute('id', 'folio')
 
@@ -23,6 +23,20 @@ async function getPhotographer() {
 
             photographerSection.insertBefore(div, photographerSection.children[0])
             photographerPhoto.appendChild(img)
+
+            data.media.sort((a, b) => {
+                const e1 = a.likes; // ignore upper and lowercase
+                const e2 = b.likes; // ignore upper and lowercase
+                if (e1 < e2) {
+                    return -1;
+                }
+                if (e1 > e2) {
+                    return 1;
+                }
+
+                // names must be equal
+                return 0;
+            });
 
             data.media.find(function tri(medias) {
                 if (id == medias.photographerId) {
@@ -60,10 +74,10 @@ function MediaFactory(Media, name, id) {
     } else {
         const link = `./assets/folio/${firstname}/${Media.video}`
         const video = document.createElement('video')
-        const canvas = document.createElement("CANVAS");
         video.setAttribute('src', link)
-        canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-        div.appendChild(canvas)
+        video.width = "350"
+        video.height = "300"
+        div.appendChild(video)
     }
     const div2 = document.createElement('div')
 
@@ -98,6 +112,7 @@ function photographerFactory(photographer) {
     div.appendChild(h2)
 
     const span = document.createElement('span')
+    span.classList.add('photographer-country')
     span.textContent = `${photographer.city} ${photographer.country}`
     div.appendChild(span)
 
@@ -150,50 +165,77 @@ function sortGallery(album, name, id) {
         switch (select) {
             case 'titre':
                 album.sort((a, b) => {
-                    const nameA = a.title.toUpperCase(); // ignore upper and lowercase
-                    const nameB = b.title.toUpperCase(); // ignore upper and lowercase
-                    if (nameA < nameB) {
+                    const e1 = a.title.toUpperCase(); // ignore upper and lowercase
+                    const e2 = b.title.toUpperCase(); // ignore upper and lowercase
+                    if (e1 < e2) {
                         return -1;
                     }
-                    if (nameA > nameB) {
+                    if (e1 > e2) {
                         return 1;
                     }
 
                     // names must be equal
                     return 0;
                 });
-                let div = document.createElement('div')
-                div.setAttribute('id', 'folio')
-                album.forEach(image => {
-                    div.appendChild(MediaFactory(image, name, id))
-                })
-                const divFolio = document.getElementById('folio')
-                divFolio.remove()
+                console.log(album)
+                buildGallery(album, name, id)
 
-                const folio = document.getElementById('folioContainer')
-                folio.appendChild(div)
-                lightbox.init()
                 break;
+
+            case 'popularite':
+                album.sort((a, b) => {
+                    const e1 = a.likes; // ignore upper and lowercase
+                    const e2 = b.likes; // ignore upper and lowercase
+                    if (e1 < e2) {
+                        return -1;
+                    }
+                    if (e1 > e2) {
+                        return 1;
+                    }
+
+                    // names must be equal
+                    return 0;
+                });
+                buildGallery(album, name, id)
+                console.log(album)
+                break;
+
             case 'date':
                 album.sort((a, b) => {
-                    const nameA = a.date.toUpperCase(); // ignore upper and lowercase
-                    const nameB = b.date.toUpperCase(); // ignore upper and lowercase
-                    if (nameA < nameB) {
+                    const e1 = a.date; // ignore upper and lowercase
+                    const e2 = b.date; // ignore upper and lowercase
+                    if (e1 < e2) {
                         return -1;
                     }
-                    if (nameA > nameB) {
+                    if (e1 > e2) {
                         return 1;
                     }
 
                     // names must be equal
                     return 0;
                 });
+                buildGallery(album, name, id)
                 break;
             default:
                 console.log(`Sorry`);
         }
     }
 
+}
+
+
+function buildGallery(album, name, id) {
+    let div = document.createElement('div')
+    div.setAttribute('id', 'folio')
+    album.forEach(image => {
+        div.appendChild(MediaFactory(image, name, id))
+    })
+    const divFolio = document.getElementById('folio')
+    divFolio.remove()
+
+    const folio = document.getElementById('folioContainer')
+    folio.appendChild(div)
+    lightbox.init()
 }
 
 
