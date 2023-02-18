@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -14,7 +14,7 @@
 
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
     </header>
     <main id="main">
       <div id="photograph-header">
@@ -23,7 +23,8 @@
       </div>
       <div class="container">
         <div class="custom-select">
-          <span class="select-title">Trier par</span> <select name="select" id="select">
+          <span class="select-title">Trier par</span> <select aria-labelledby="trier en fonction de" name="select"
+            id="select">
             <option value="popularite">Popularité</option>
             <option class="divider" disabled></option>
             <option value="date">Date</option>
@@ -40,7 +41,7 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="fermer la modale" onclick="closeModal()" />
         </header>
         <form id="form">
           <div class="formData">
@@ -57,7 +58,8 @@
           </div>
           <div class="formData">
             <label for="message">Votre message</label><br>
-            <textarea class="text-control" type="text" id="message" name="message" required></textarea>
+            <textarea aria-labelledby="Votre message" class="text-control" type="text" id="message" name="message"
+              required></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
