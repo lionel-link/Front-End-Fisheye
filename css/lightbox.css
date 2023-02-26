@@ -6,7 +6,7 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .90);
+    background-color: white;
     z-index: 10;
     animation: lightboxIn 0.5s;
 }
@@ -39,11 +39,11 @@
     height: 53px;
     border: none;
     z-index: 12;
-    background: url('data:image/svg+xml;utf8,<svg width="50" height="48" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.545 7.705L17.135 6.295L12.84 10.59L8.545 6.295L7.135 7.705L11.43 12L7.135 16.295L8.545 17.705L12.84 13.41L17.135 17.705L18.545 16.295L14.25 12L18.545 7.705Z" fill="white" /></svg>') center center / 55px 53px no-repeat;
+    background: url('./../assets/images/cross2.svg') center center / 55px 53px no-repeat;
 }
 
 .lightbox button {
-    opacity: 0.5;
+    opacity: 0.8;
     cursor: pointer;
     transition: opacity 0.3s;
     text-indent: 3000px;
