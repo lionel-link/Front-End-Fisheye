@@ -24,6 +24,11 @@ body {
     cursor: pointer;
 }
 
+.contact_button:hover {
+    color: black;
+    background-color: #DB8876;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
