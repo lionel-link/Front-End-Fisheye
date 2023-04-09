@@ -1,7 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
 import { getData } from "./../utils/getData.js";
 import { lightbox } from "./../utils/lightbox.js";
-import { getUserBannerDOM, MediaFactory, priceFactory } from "../factories/photographer.js";
+import {
+  getUserBannerDOM,
+  MediaFactory,
+  priceFactory,
+} from "../factories/photographer.js";
 async function getPhotographer() {
   const folio = document.getElementById("folioContainer");
   const photographerSection = document.getElementById("photograph-header");
@@ -15,41 +19,41 @@ async function getPhotographer() {
   let divFolio = document.createElement("div");
   divFolio.setAttribute("id", "folio");
 
-  let data = await getData()
-      photographer = data.photographers.find(
-        (photographer) => photographer.id == id
-      );
-      // eslint-disable-next-line no-undef
-      const { div, img } = getUserBannerDOM(photographer);
+  let data = await getData();
+  photographer = data.photographers.find(
+    (photographer) => photographer.id == id
+  );
+  // eslint-disable-next-line no-undef
+  const { div, img } = getUserBannerDOM(photographer);
 
-      photographerSection.insertBefore(div, photographerSection.children[0]);
-      photographerPhoto.appendChild(img);
+  photographerSection.insertBefore(div, photographerSection.children[0]);
+  photographerPhoto.appendChild(img);
 
-      data.media.sort((a, b) => {
-        const e1 = a.likes; // ignore upper and lowercase
-        const e2 = b.likes; // ignore upper and lowercase
-        if (e1 < e2) {
-          return -1;
-        }
-        if (e1 > e2) {
-          return 1;
-        }
+  data.media.sort((a, b) => {
+    const e1 = a.likes; // ignore upper and lowercase
+    const e2 = b.likes; // ignore upper and lowercase
+    if (e1 < e2) {
+      return -1;
+    }
+    if (e1 > e2) {
+      return 1;
+    }
 
-        // names must be equal
-        return 0;
-      });
+    // names must be equal
+    return 0;
+  });
 
-      data.media.find(function tri(medias) {
-        if (id == medias.photographerId) {
-          album.push(medias);
-          divFolio.appendChild(MediaFactory(medias, photographer.name, id));
-          likes += medias.likes;
-        }
-      });
-      folio.appendChild(divFolio);
-      const { divLikes, span2 } = priceFactory(photographer.price, likes);
-      priceSection.appendChild(divLikes);
-      priceSection.appendChild(span2);
+  data.media.find(function tri(medias) {
+    if (id == medias.photographerId) {
+      album.push(medias);
+      divFolio.appendChild(MediaFactory(medias, photographer.name, id));
+      likes += medias.likes;
+    }
+  });
+  folio.appendChild(divFolio);
+  const { divLikes, span2 } = priceFactory(photographer.price, likes);
+  priceSection.appendChild(divLikes);
+  priceSection.appendChild(span2);
   sortGallery(album, photographer.name, id);
   lightbox.init();
 }
