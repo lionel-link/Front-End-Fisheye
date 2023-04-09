@@ -1,5 +1,6 @@
 export class lightbox {
   static init() {
+    let link = "";
     let type = "";
 
     //const links = Array.from(document.querySelectorAll('a[href$=".png"], a[href$=".jpg"]'))
@@ -63,7 +64,7 @@ export class lightbox {
   loadImage(url, type) {
     const container = document.querySelector(".lightbox__container");
     switch (type) {
-      case "img":{
+      case "img":
         const image = new Image();
         if (container.hasChildNodes()) {
           container.removeChild(container.children[0]);
@@ -72,8 +73,8 @@ export class lightbox {
         container.appendChild(image);
         this.url = url;
         this.type = "img";
-        break;}
-      case "video":{
+        break;
+      case "video":
         const video = document.createElement("video");
         if (container.hasChildNodes()) {
           container.removeChild(container.children[0]);
@@ -84,7 +85,7 @@ export class lightbox {
         container.appendChild(video);
         this.url = url;
         this.type = "video";
-        break;}
+        break;
       default:
         console.log("bug");
     }
