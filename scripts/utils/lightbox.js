@@ -41,11 +41,13 @@ export class lightbox {
     this.gallery = gallery;
     this.onKeyUp(this);
     this.closeModal();
+    document.querySelector('.lightbox').focus();
   }
 
   buildDom() {
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
+    dom.setAttribute("tabindex", "0");
     dom.setAttribute("id", "lightbox");
     dom.innerHTML = ` <button id="lightbox__close">Fermer</button>
                         <button class="lightbox__next">Suivant</button>

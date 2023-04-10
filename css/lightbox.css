@@ -9,6 +9,11 @@
     background-color: white;
     z-index: 10;
     animation: lightboxIn 0.5s;
+    z-index: 5;
+    cursor: pointer;
+}
+.lightbox:focus {
+    outline: 3px solid red;   
 }
 
 .lightbox__next,
